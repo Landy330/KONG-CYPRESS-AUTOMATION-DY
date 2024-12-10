@@ -3,12 +3,12 @@ name: CI - KONG-CYPRESS-TEST
 on:
   push:
     branches:
-      - main # 根据实际情况调整触发分支，也可以是'develop'等
+      - master # branch to trigger CI
   pull_request:
 
 jobs:
   build - and - test:
-    runs - on: ubuntu - latest
+    runs - on: macOS - latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -16,7 +16,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup - node@v3
         with:
-          node - version: '16.x' # 根据项目需求调整Node.js版本
+          node - version: '20.10.0' # 根据项目需求调整Node.js版本
         # 安装指定版本的Node.js，因为Cypress依赖Node.js环境
       - name: Install dependencies
         run: npm install # 如果是yarn项目，使用yarn install

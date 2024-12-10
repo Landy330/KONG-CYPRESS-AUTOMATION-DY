@@ -1,7 +1,7 @@
-import WorkSpacePage from "../../page/workspaces_page"
-import { deleteAllServices } from "../../utils/service_apis";
+import GatewayServicesPage from "../../page/gateway_services_page"
+import { deleteAllServices, deleteServiceById } from "../../utils/service_apis";
 
-const workSpacesPage = new WorkSpacePage()
+const workSpacesPage = new GatewayServicesPage()
 let serviceConfig: any;
 
 describe("Gateway Services Page", () => {
@@ -10,6 +10,7 @@ describe("Gateway Services Page", () => {
             .then((data) => {
                 serviceConfig = data
             })
+        // clear test data before start testing
         deleteAllServices()
     })
 
@@ -17,10 +18,6 @@ describe("Gateway Services Page", () => {
         cy.visit(workSpacesPage.workspacesUrl)
     })
 
-    it("test", () => {
-        workSpacesPage.gotoCreateServicePage()
-        console.log("hhh")
-    })
 
     it("create service", () => {
         workSpacesPage.gotoCreateServicePage()
@@ -44,24 +41,12 @@ describe("Gateway Services Page", () => {
 
 
     after(() => {
-        // console.log("createServiceId: ", createServiceId)
-        // console.log("createServiceAdvancedId: ", createServiceAdvancedId)
-
+        // Another way to clear the specified test data
         // if (createServiceId) {
-        //     cy.request({
-        //         method: 'DELETE',
-        //         url: `http://localhost:8001/default/services/${createServiceId}`
-        //       }).then((response) => {
-        //         console.log("response: ", response)
-        //       })
+        //     deleteServiceById(createServiceId)
         // }
         // if (createServiceAdvancedId) {
-        //     cy.request({
-        //         method: 'DELETE',
-        //         url: `http://localhost:8001/default/services/${createServiceAdvancedId}`
-        //       }).then((response) => {
-        //         console.log("response: ", response)
-        //       })
+        //     deleteServiceById(createServiceAdvancedId)
         // }
     })
 

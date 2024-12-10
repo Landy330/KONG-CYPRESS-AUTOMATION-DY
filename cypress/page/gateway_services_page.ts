@@ -17,7 +17,7 @@ type advancedType = {
 }
 
 
-class WorkSpacePage extends BasePage {
+class GatewayServicesPage extends BasePage {
 
     constructor() {
         super()
@@ -29,9 +29,8 @@ class WorkSpacePage extends BasePage {
     gatewayServicesUrl = this.baseUrl + "/default/services"
 
     // element of Service Lists Page
-    newServiceBtn = '[data-testid="new-gateway-service"]'
-    createServiceBtn = '[data-testid="toolbar-add-gateway-service"]' // empty or not
-
+    newServiceBtn = '[data-testid="new-gateway-service"], [data-testid="toolbar-add-gateway-service"]' //// empty service or not
+    
     // element of CreateService Detail Page 
     serviceNameInput = '[data-testid="gateway-service-name-input"]'
     typeTagsInput = '[data-testid="gateway-service-tags-input"]'
@@ -56,25 +55,24 @@ class WorkSpacePage extends BasePage {
     }
 
     createNewService(serviceConfig: serviceConfigType) {
-        console.log("serviceConfig: ", serviceConfig)
         // create new gateway service
-        debugger;
-        cy.get(this.createServiceBtn, { timeout: 5000 }).then((ele) => {
-            if (ele.length > 0 && ele.is('visible')) {
-                cy.wrap(ele).click()
-            } else {
-                cy.get(this.newServiceBtn, { timeout: 5000 })
-                    .click()
-            }
-        })
+        cy.get(this.newServiceBtn, {timeout: 5000})
+        .filter(':visible')
+        .click()
+        // cy.get(this.createServiceBtn, { timeout: 5000 }).then((ele) => {
+        //     if (ele.length > 0 && ele.is('visible')) {
+        //         cy.wrap(ele).click()
+        //     } else {
+        //         cy.get(this.newServiceBtn, { timeout: 5000 })
+        //             .click()
+        //     }
+        // })
 
         // New Gateway Service title
-        debugger;
         cy.get(this.serviceNameInput)
             .type(serviceConfig.name)
 
         // type tags
-        debugger;
         cy.get(this.typeTagsInput)
             .should('exist')
             .type(serviceConfig.tag)
@@ -148,35 +146,6 @@ class WorkSpacePage extends BasePage {
 
     }
 
-
-    deleteServiceFromList(serviceConfig: serviceConfigType) {
-
-    }
-
-    // it("UI check", () => {
-    //     cy.get('.title', {timeout: 2000})
-    //     .should("have.text", "New Gateway Service")
-
-    //     cy.get('.support-text > p')
-    //     .should("not.be.empty")
-
-    //     cy.get('.form-section-title').first()
-    //     .should("have.text", "General Information")
-
-    //     cy.get('.form-section-title').first().get('.form-section-wrapper > .form-section-info > .form-section-description > p')
-    //     .should("not.be.empty")
-
-    //     cy.get('.form-section-title').eq(1)
-    //     .should("have.text", "Service Endpoint")
-
-    //     cy.get('[data-testid="service-form-cancel"]')
-    //     .should("have.text", "Cancel")
-
-    //     cy.get('[data-testid="service-form-submit"]')
-    //     .should("be.disabled")
-    // })
-
-
 }
 
-export default WorkSpacePage;
+export default GatewayServicesPage;
