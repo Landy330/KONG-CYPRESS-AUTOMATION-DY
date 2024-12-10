@@ -1,0 +1,10 @@
+{
+    "ga": {
+        "base_url": "http://localhost:8002" 
+    },
+    "stg": {
+    },
+    "release": {
+        
+    }
+}

@@ -1,0 +1,6 @@
+[
+    {
+        "protocol": "HTTPS",
+        "paths": ["/v1/user/info", "/v1/user/lists"]
+    }
+]

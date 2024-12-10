@@ -1,0 +1,47 @@
+{
+  "create": [
+    {
+      "name": "ga-create",
+      "tag": "ga,create",
+      "endpoint": {
+        "url": "https://ga-create.com"
+      }
+    },
+    {
+      "name": "ga-create-advanced",
+      "tag": "ga,create,advanced",
+      "endpoint": {
+        "protocol": "https",
+        "host": "ga-create-advanced.com"
+      },
+      "advanced":{
+        "retries": "10",
+        "connectTimeout": "50000",
+        "writeTimeout": "40000",
+        "readTimeout": "60000"
+      }
+    }
+    
+  ],
+  "deleteService": [
+    {
+      "name": "ga-delete",
+      "tag": "ga,delete",
+      "protocol": "https",
+      "host": "ga-delete.com"
+    },
+    {
+      "name": "pre-create",
+      "tag": "pre,create",
+      "protocol": "https",
+      "host": "pre-create.com"
+    },
+    {
+      "name": "pre-delete",
+      "tag": "pre,delete",
+      "protocol": "https",
+      "host": "pre-delete.com"
+    }
+  ],
+  "release": []
+}
