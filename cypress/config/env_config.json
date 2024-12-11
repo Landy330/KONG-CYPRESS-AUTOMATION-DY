@@ -1,0 +1,11 @@
+{
+    "dev": {
+        "base_route": "http://localhost:8002",
+        "base_url":"http://localhost:8001"
+    },
+    "stg": {
+    },
+    "release": {
+        
+    }
+}

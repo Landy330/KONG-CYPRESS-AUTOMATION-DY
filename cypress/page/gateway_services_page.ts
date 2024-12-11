@@ -23,13 +23,13 @@ class GatewayServicesPage extends BasePage {
         super()
     }
 
-    baseUrl: string = Cypress.env('baseUrl')
-    overviewUrl = this.baseUrl + "/default/overview"
-    workspacesUrl = this.baseUrl + "/workspaces"
-    gatewayServicesUrl = this.baseUrl + "/default/services"
+    baseRoute: string = "http://localhost:8002"
+    overviewUrl = this.baseRoute + "/default/overview"
+    workspacesUrl = this.baseRoute + "/workspaces"
+    gatewayServicesUrl = this.baseRoute + "/default/services"
 
     // element of Service Lists Page
-    newServiceBtn = '[data-testid="new-gateway-service"], [data-testid="toolbar-add-gateway-service"]' //// empty service or not
+    newServiceBtn = '[data-testid="new-gateway-service"], [data-testid="toolbar-add-gateway-service"]' // create button when service is empty or not
     
     // element of CreateService Detail Page 
     serviceNameInput = '[data-testid="gateway-service-name-input"]'
@@ -48,9 +48,10 @@ class GatewayServicesPage extends BasePage {
     readTimeoutInput = 'input[data-testid="gateway-service-readTimeout-input"]'
     submitBtn = '[data-testid="service-form-submit"]'
 
-
+    
 
     gotoCreateServicePage() {
+        console.log("baseRoute: ", this.baseRoute)
         cy.visit(this.gatewayServicesUrl)
     }
 
@@ -59,14 +60,6 @@ class GatewayServicesPage extends BasePage {
         cy.get(this.newServiceBtn, {timeout: 5000})
         .filter(':visible')
         .click()
-        // cy.get(this.createServiceBtn, { timeout: 5000 }).then((ele) => {
-        //     if (ele.length > 0 && ele.is('visible')) {
-        //         cy.wrap(ele).click()
-        //     } else {
-        //         cy.get(this.newServiceBtn, { timeout: 5000 })
-        //             .click()
-        //     }
-        // })
 
         // New Gateway Service title
         cy.get(this.serviceNameInput)

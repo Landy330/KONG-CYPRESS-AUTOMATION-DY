@@ -9,12 +9,12 @@ type routeType = {
     path: string[]
 }
 class RoutesPage extends BasePage {
+    
     constructor() {
         super()
     }
-
-    baseUrl: string = Cypress.env('baseUrl')
-    routesUrl = this.baseUrl + "/default/routes"
+    // baseRoute: string = Cypress.env('baseRoute')
+    routesUrl = "http://localhost:8002/default/routes"
 
     createNewRouteBtn = '[data-testid="new-route"]'
     routeNameInput = '[data-testid="route-form-name"]'

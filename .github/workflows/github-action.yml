@@ -1,0 +1,48 @@
+name: CI - KONG-CYPRESS-TEST
+
+on:
+  push:
+    branches:
+      - master # branch to trigger CI
+  pull_request:
+
+jobs:
+  build - and - test:
+    runs - on: macOS-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup -node@v3
+        with:
+          node - version: '20.10.0'
+      - name: Install dependencies
+        run: npm install
+      - name: Cypress cache
+        uses: cypress -io/cache@v6
+        with:
+          path: ~/.cache/Cypress
+          key: cypress -v16 -${{ hashFiles('package-json.lock') }}
+          restore - keys: |
+            cypress -v16 -
+        # cache Cypress file to accelarate running process
+      - name: Run Cypress tests
+        uses: cypress -io/github -action@v5
+        with:
+          start: npx cypress run
+          record: false
+          browser: chrome
+        # run Cypress TestCase
+      - name: Generate test reports
+        run: |
+          npm install -g cypress-mochawesome-reporter
+          mkdir -p cypress/reports
+          npx mochawesome-merge cypress/reports/mochawesome-report/*.json > mochawesome.json
+          npx mochawesome-report-generator mochawesome.json -o cypress/reports/html -report
+        # use mochawesome to generate reports
+      - name: Upload test reports
+        uses: actions/upload - artifact@v3
+        with:
+          name: cypress -test -reports
+          path: cypress/reports/html -report
+        # upload reports to GitHub Actions

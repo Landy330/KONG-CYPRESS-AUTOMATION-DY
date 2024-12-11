@@ -8,16 +8,18 @@ type routeConfigType = {
     path: string[]
 }
 
-const routePage = new RoutesPage()
-let routeConfig: routeConfigType[]
+
 
 describe('Routes Page Tests', () => {
     let addRouteId: string;
     let routeIdToDelete: string | undefined;
+    const routePage = new RoutesPage()
+    let routeConfig: routeConfigType[]
     before(() => {
         cy.fixture('route_config.json').then((routes) => {
             routeConfig = routes
         })
+        // prepare test data
         createServiceDefault("add-route", "https://ga-add.route.com").then((body) => {
             addRouteId = body.id
         })
