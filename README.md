@@ -16,11 +16,12 @@
     - The test data is located in /cypress/fixture/, which is convenient for reading and using. It provides varieties of input data for test cases to ensure that the tests cover all possible situations.
 3. Reports
     - In cypress.config.ts, mochawesome is configured to collect result data and generate test reports, which are saved in the /cypress/reports/ and screenshots folders. If a test case fails, the report will clearly present the failure reason and detailed error information to help you quickly locate the root cause of the problem. You can use a browser to open the HTML file to view the detailed visual report.
+      ![mochawesome-report](https://github.com/Landy330/KONG-CYPRESS-AUTOMATION-DY/blob/master/img/reports.png?raw=true)
 
 # Installation and  Run
 1. Open the Cypress Test Runner Interface and Start Tests
     ```sh
-        npx tsc && CYPRESS_environment=dev npx cypress open
+    npx tsc && CYPRESS_environment=dev npx cypress open
     ```
 
     Run Tests Directly
@@ -46,12 +47,15 @@
 3. The CI process of Github Actions still needs to be improved.
 4. Use the coverage statistics plugins of test cases.
 
-# Thinking
+# Thought
 This assignment was an interesting process of exploration and reflection.
 
 It was my first time to use the Cypress tool. During the coding process, I felt that Cypress is lightweight, convenient, and powerful. It is an automated tool that can be quickly used.
-If there had been more time and I had known more about Kong's products, there would have been more for optimizing the code structure and implementation. I could have used more advanced features of Cypress, such as custom commands, to better adapt to specific business and improve the speed and stability of writing test cases. Of course, I'm very happy to discuss if there are better suggestions.
+If there had been more time and I had known more about Kong's products, there would have been more for optimizing the code structure and implementation. I could have used more advanced features of Cypress, such as custom commands, to better adapt to specific application and improve the speed and stability of writing test cases. Of course, I'm very happy to discuss if there are better suggestions.
 
-However, in the actual project progress, there were also some challenges. For example, with the continuous iterative update of application functions, how to ensure that a large number of test cases can be updated in a timely manner and always keep in line with the latest changes of the application is a problem that urgently needs to be solved. This is also an important reason why many companies cannot persist in maintaining UI automation.
+However, in the actual project progress, there were also some challenges. For example, with the continuous iterative update of application functions, how to ensure that a large number of test cases can be updated timely and always keep in line with the latest version of the application is a problem that urgently needs to be solved. This is also an important reason why many companies cannot persist in maintaining UI automation.
 
-By the way: The data-testid field is so convenient. Thanks to the developers. And the attribute values of elements are flexible. For example, they can just be the ids of data, which greatly improves the efficiency of element location.
+By the way: The data-testid attribute is so convenient. Thanks to the developers. And the attribute values of elements are flexible. For example, they can just be the ids of data, which greatly improves the efficiency of element location.
+
+# Version
+v1.0.0
